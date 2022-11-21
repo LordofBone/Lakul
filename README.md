@@ -25,6 +25,12 @@ internet access.
 Install the requirements with:
 `pip install -r requirements.txt`
 
+If the Whisper install doesn't work from requirements.txt, you can install it manually with:
+`pip install git+https://github.com/openai/whisper.git`
+
+and to update it:
+`pip install --upgrade --no-deps --force-reinstall git+https://github.com/openai/whisper.git`
+
 Then you can run integrate_stt.py and seeing if it can translate speech to text (ensure you have a microphone).
 
 You can also change the model size by changing the model_size variable in config/whisper_config.py.
