@@ -27,6 +27,10 @@ Install the requirements with:
 
 Then you can run integrate_stt.py and seeing if it can translate speech to text (ensure you have a microphone).
 
+You can also change the model size by changing the model_size variable in config/whisper_config.py.
+
+The available_models are = ["tiny", "base", "small", "medium", "large"]
+
 ##### Integrating Lakul into a project
 If you want to integrate Lakul into another system, such as a robot - you can pull down the repo into the folder of
 the project you are working on, then append the system path of the Lakul folder to the system path of the project.
@@ -41,6 +45,10 @@ If you are running on RPi you will need to ensure that the pytorch version is at
 
 Then you can run a test by running integrate_stt.py and seeing if it can translate speech to text 
 (ensure you have a microphone).
+
+You can also change the model size by changing the model_size variable in config/whisper_config.py.
+
+The available_models are = ["tiny", "base", "small", "medium", "large"]
 
 Then importing SpeechInference from integrate_stt.py:
 `from lakul.integrate_stt import SpeechtoTextHandler`
