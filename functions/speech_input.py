@@ -8,14 +8,13 @@ import logging
 logger = logging.getLogger("listener")
 
 
-def listen():
+def listen(seconds=6):
     """
     Listen to the microphone and return the recorded sound.
     :return:
     """
 
     fs = 16000
-    seconds = 6
 
     sd.default.samplerate = fs
     sd.default.channels = 1
