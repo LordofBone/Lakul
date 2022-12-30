@@ -8,7 +8,7 @@ import logging
 logger = logging.getLogger("listener")
 
 
-def listen(seconds=6):
+def listen(seconds):
     """
     Listen to the microphone and return the recorded sound.
     :return:

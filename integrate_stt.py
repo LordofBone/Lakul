@@ -19,14 +19,14 @@ class SpeechtoTextHandler:
         self.listening = False
         self.inferencing = False
 
-    def initiate_recording(self):
+    def initiate_recording(self, seconds=6):
         """
         Initiate recording.
         :return:
         """
         self.listening = True
 
-        listen()
+        listen(seconds)
 
         self.listening = False
 
