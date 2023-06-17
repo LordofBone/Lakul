@@ -1,4 +1,5 @@
 import whisper
+import openai
 
 from config.whisper_config import *
 
@@ -14,6 +15,7 @@ class SpeechInference(object):
         """
         Initialize the speech inference class.
         """
+        self.offline_mode = offline_mode
         self.model = whisper.load_model(model_size)
 
     def run_stt(self):
@@ -21,10 +23,16 @@ class SpeechInference(object):
         Run speech inference.
         :return:
         """
-        logger.debug("Started Inferencing")
+        if self.offline_mode:
+            logger.debug("Started Inferencing using Offline method")
 
-        result = self.model.transcribe(audio_file)
-        return result["text"]
+            result = self.model.transcribe(audio_file)
+            return result["text"]
+        else:
+            file = open(audio_file, "rb")
+            transcription = openai.Audio.transcribe("whisper-1", file)
+
+            return transcription
 
 
 SpeechInferencer = SpeechInference()

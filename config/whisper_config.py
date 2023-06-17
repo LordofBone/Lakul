@@ -6,3 +6,7 @@ audio_file = str(file_path / "recording.wav")
 
 # available_models = ["tiny", "base", "small", "medium", "large"]
 model_size = "base"
+
+offline_mode = True
+
+api_key = "your_api_key_here"  # Replace with your API key
