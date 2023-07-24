@@ -1,7 +1,7 @@
 import sounddevice as sd
 from scipy.io.wavfile import write
 
-from config.whisper_config import *
+from ..config.whisper_config import *
 
 import logging
 

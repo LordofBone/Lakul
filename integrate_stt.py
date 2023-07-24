@@ -1,5 +1,5 @@
-from functions.run_speech_inference import SpeechInferencer
-from functions.speech_input import listen
+from .functions.run_speech_inference import SpeechInferencer
+from .functions.speech_input import listen
 
 import logging
 
@@ -42,7 +42,3 @@ class SpeechtoTextHandler:
         self.inferencing = False
 
         return text_output
-
-
-if __name__ == '__main__':
-    main()

@@ -1,7 +1,7 @@
 import whisper
 import openai
 
-from config.whisper_config import *
+from ..config.whisper_config import *
 
 import logging
 
