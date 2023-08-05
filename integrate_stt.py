@@ -3,6 +3,9 @@ from .functions.speech_input import listen
 
 import logging
 
+logger = logging.getLogger(__name__)
+logger.debug("Initialized")
+
 
 def main():
     logging.basicConfig(level="DEBUG")
