@@ -5,7 +5,9 @@ from ..config.whisper_config import *
 
 import logging
 
-logger = logging.getLogger("listener")
+# Initialize logger with the given name
+logger = logging.getLogger(__name__)
+logger.debug("Initialized")
 
 
 def listen(seconds):
@@ -29,8 +31,3 @@ def listen(seconds):
     write(str(audio_file), fs, audio_in)
 
     # todo: figure out how to get audio to record only on voice and end when voice is done
-
-
-if __name__ == '__main__':
-    print(sd.query_devices())
-    print(listen())

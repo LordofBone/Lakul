@@ -7,7 +7,9 @@ import logging
 
 root_dir = Path(__file__).parent
 
-logger = logging.getLogger("inferencing")
+# Initialize logger with the given name
+logger = logging.getLogger(__name__)
+logger.debug("Initialized")
 
 
 class SpeechInference(object):
@@ -15,8 +17,10 @@ class SpeechInference(object):
         """
         Initialize the speech inference class.
         """
+        logger.debug("Initializing Speech Inference model")
         self.offline_mode = offline_mode
         self.model = whisper.load_model(model_size)
+        logger.debug("Initialized Speech Inference model")
 
     def run_stt(self):
         """
@@ -36,6 +40,3 @@ class SpeechInference(object):
 
 
 SpeechInferencer = SpeechInference()
-
-if __name__ == "__main__":
-    print(SpeechInferencer.run_stt())

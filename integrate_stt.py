@@ -28,7 +28,6 @@ class SpeechtoTextHandler:
         :return:
         """
         self.listening = True
-
         listen(seconds)
 
         self.listening = False
