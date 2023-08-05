@@ -17,10 +17,17 @@ class SpeechInference(object):
         """
         Initialize the speech inference class.
         """
-        logger.debug("Initializing Speech Inference model")
+
         self.offline_mode = offline_mode
-        self.model = whisper.load_model(model_size)
-        logger.debug("Initialized Speech Inference model")
+
+        if self.offline_mode:
+            logger.debug("Initializing Speech Inference model")
+            self.model = whisper.load_model(model_size)
+            logger.debug("Initialized Speech Inference model")
+        else:
+            logger.debug("Initializing OpenAI API")
+            openai.api_key = api_key
+            logger.debug("Initialized OpenAI API")
 
     def run_stt(self):
         """
