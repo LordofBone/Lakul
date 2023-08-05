@@ -28,11 +28,13 @@ class SpeechInference(object):
         :return:
         """
         if self.offline_mode:
-            logger.debug("Started Inferencing using Offline method")
+            logger.debug("Started Inferencing using offline method")
 
             result = self.model.transcribe(audio_file)
             return result["text"]
         else:
+            logger.debug("Started Inferencing using online method")
+
             file = open(audio_file, "rb")
             transcription = openai.Audio.transcribe("whisper-1", file)
 
