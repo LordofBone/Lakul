@@ -49,7 +49,7 @@ You can also change the model size of the local version by changing the model_si
 The available_models are = ["tiny", "base", "small", "medium", "large"]
 
 Importing SpeechInference from integrate_stt.py as a submodule into another project:
-`from lakul.integrate_stt import SpeechtoTextHandler`
+`from Lakul.integrate_stt import SpeechtoTextHandler`
 Which can then be called from the program to record audio and get the text output.
 `SpeechtoText = SpeechtoTextHandler()`
 `SpeechtoText.initiate_recording()`
