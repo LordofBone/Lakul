@@ -1,7 +1,7 @@
-from .functions.run_speech_inference import SpeechInferencer
-from .functions.speech_input import listen
-
 import logging
+
+from .functions.run_speech_inference import SpeechInferencer
+from .functions.speech_input import AudioRecorder
 
 logger = logging.getLogger(__name__)
 logger.debug("Initialized")
@@ -15,20 +15,22 @@ def main():
 
 
 class SpeechtoTextHandler:
-    def __init__(self):
+    def __init__(self, microphone_name="Microphone"):
         """
         Initialize the speech to text handler with current state.
         """
         self.listening = False
         self.inferencing = False
+        self.recorder = AudioRecorder(microphone_name=microphone_name)  # Initialize the AudioRecorder
 
-    def initiate_recording(self, seconds=6):
+    def initiate_recording(self, max_seconds=60, silence_threshold=500, silence_duration=2):
         """
         Initiate recording.
         :return:
         """
         self.listening = True
-        listen(seconds)
+        # Use the recorder's listen method
+        self.recorder.listen(max_seconds, silence_threshold, silence_duration)
 
         self.listening = False
 
