@@ -82,7 +82,7 @@ class AudioRecorder:
             squared = np.nan_to_num(squared)  # Replace NaN or Inf with 0
         return np.sqrt(np.mean(squared))
 
-    def listen(self, max_seconds, silence_threshold=500, silence_duration=2):
+    def listen(self, max_seconds, silence_threshold, silence_duration):
         """
         Listen to the microphone and save the recorded sound.
         Stops recording after silence_duration seconds of silence or after max_seconds.
@@ -108,7 +108,7 @@ class AudioRecorder:
             # Check for silence
             if self.rms(data) < silence_threshold:
                 silence_frames += 1
-                if silence_frames >= int(self.RATE / self.CHUNK * silence_duration):
+                if silence_frames >= silence_duration:
                     break
             else:
                 silence_frames = 0

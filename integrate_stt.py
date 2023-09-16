@@ -23,7 +23,7 @@ class SpeechtoTextHandler:
         self.inferencing = False
         self.recorder = AudioRecorder(microphone_name=microphone_name)  # Initialize the AudioRecorder
 
-    def initiate_recording(self, max_seconds=60, silence_threshold=500, silence_duration=2):
+    def initiate_recording(self, max_seconds=60, silence_threshold=100, silence_duration=200):
         """
         Initiate recording.
         :return:
