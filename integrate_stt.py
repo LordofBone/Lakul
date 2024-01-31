@@ -1,6 +1,6 @@
 import logging
 
-from config.whisper_config import offline_mode, model_size, microphone_name, api_key, audio_file
+from .config.whisper_config import offline_mode, model_size, microphone_name, api_key, audio_file
 
 from .functions.run_speech_inference import SpeechInference
 from .functions.speech_input import AudioRecorder
