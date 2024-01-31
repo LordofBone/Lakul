@@ -6,7 +6,6 @@ import pyaudio
 
 # Initialize logger with the given name
 logger = logging.getLogger(__name__)
-logger.debug("Initialized")
 
 
 class AudioRecorder:
@@ -21,6 +20,8 @@ class AudioRecorder:
         self.CHUNK = self.find_compatible_chunk_size()
 
         self.audio_file = audio_file
+
+        logger.debug("Initialized")
 
     def find_usb_microphone_device(self):
         # List all audio devices
@@ -87,7 +88,7 @@ class AudioRecorder:
         Listen to the microphone and save the recorded sound.
         Stops recording after silence_duration seconds of silence or after max_seconds.
         """
-        logger.debug("Listening...")
+        logger.debug("Listening")
 
         frames = []
         silence_frames = 0

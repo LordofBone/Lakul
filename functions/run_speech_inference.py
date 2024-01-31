@@ -8,7 +8,6 @@ root_dir = Path(__file__).parent
 
 # Initialize logger with the given name
 logger = logging.getLogger(__name__)
-logger.debug("Initialized")
 
 
 class SpeechInference:
@@ -30,6 +29,8 @@ class SpeechInference:
             openai.api_key = api_key
             logger.debug("Initialized OpenAI API")
 
+        logger.debug("Initialized")
+
     def run_stt(self):
         """
         Run speech inference.
@@ -42,5 +43,7 @@ class SpeechInference:
         else:
             file = open(self.audio_file, "rb")
             result = transcription = openai.Audio.transcribe("whisper-1", file)
+
+        logger.debug(f"Completed running speech inference, output: {result['text']}")
 
         return result["text"]

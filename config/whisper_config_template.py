@@ -11,4 +11,4 @@ microphone_name = "Microphone"
 
 offline_mode = True
 
-api_key = "your_api_key_here"  # Replace with your API key
+api_key = "your_api_key_here"  # Replace with your OpenAI API key

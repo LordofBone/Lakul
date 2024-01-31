@@ -1,12 +1,10 @@
 import logging
 
 from .config.whisper_config import offline_mode, model_size, microphone_name, api_key, audio_file
-
 from .functions.run_speech_inference import SpeechInference
 from .functions.speech_input import AudioRecorder
 
 logger = logging.getLogger(__name__)
-logger.debug("Initialized")
 
 
 class SpeechtoTextHandler:
@@ -20,6 +18,8 @@ class SpeechtoTextHandler:
         self.recorder = AudioRecorder(microphone_name=stt_microphone_name, audio_file=stt_audio_file)
         self.inferencer = SpeechInference(audio_file=stt_audio_file, offline_mode=stt_offline_mode,
                                           model_size=stt_model_size, api_key=stt_api_key)
+
+        logger.debug("Initialized")
 
     def initiate_recording(self, max_seconds=60, silence_threshold=100, silence_duration=200):
         """
