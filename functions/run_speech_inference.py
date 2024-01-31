@@ -1,9 +1,8 @@
-import whisper
-import openai
-
-from ..config.whisper_config import *
-
 import logging
+from pathlib import Path
+
+import openai
+import whisper
 
 root_dir = Path(__file__).parent
 
@@ -12,11 +11,13 @@ logger = logging.getLogger(__name__)
 logger.debug("Initialized")
 
 
-class SpeechInference(object):
-    def __init__(self):
+class SpeechInference:
+    def __init__(self, audio_file, offline_mode, model_size, api_key):
         """
         Initialize the speech inference class.
         """
+
+        self.audio_file = audio_file
 
         self.offline_mode = offline_mode
 
@@ -37,14 +38,11 @@ class SpeechInference(object):
         if self.offline_mode:
             logger.debug("Started Inferencing using offline method")
 
-            result = self.model.transcribe(audio_file)
+            result = self.model.transcribe(self.audio_file)
         else:
             logger.debug("Started Inferencing using online method")
 
-            file = open(audio_file, "rb")
+            file = open(self.audio_file, "rb")
             result = transcription = openai.Audio.transcribe("whisper-1", file)
 
         return result["text"]
-
-
-SpeechInferencer = SpeechInference()

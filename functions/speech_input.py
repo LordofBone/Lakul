@@ -4,15 +4,13 @@ import wave
 import numpy as np
 import pyaudio
 
-from ..config.whisper_config import *
-
 # Initialize logger with the given name
 logger = logging.getLogger(__name__)
 logger.debug("Initialized")
 
 
 class AudioRecorder:
-    def __init__(self, microphone_name="Microphone"):
+    def __init__(self, microphone_name, audio_file):
         self.p = pyaudio.PyAudio()
         self.microphone_name = microphone_name
         self.input_device = self.find_usb_microphone_device()
@@ -21,6 +19,8 @@ class AudioRecorder:
 
         self.RATE = self.find_compatible_sample_rate()
         self.CHUNK = self.find_compatible_chunk_size()
+
+        self.audio_file = audio_file
 
     def find_usb_microphone_device(self):
         # List all audio devices
@@ -120,7 +120,7 @@ class AudioRecorder:
 
         logger.debug("Finished listening")
 
-        with wave.open(str(audio_file), 'wb') as wf:
+        with wave.open(str(self.audio_file), 'wb') as wf:
             wf.setnchannels(1)
             wf.setsampwidth(self.p.get_sample_size(pyaudio.paInt16))
             wf.setframerate(self.RATE)
