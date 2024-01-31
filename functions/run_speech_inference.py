@@ -36,7 +36,7 @@ class SpeechInference:
         Run speech inference.
         :return:
         """
-        logger.debug(f"Started running speech inference, offline_mode: {self.offline_mode} file: {self.audio_file}")
+        logger.debug(f"Started running speech inference, offline_mode: {self.offline_mode}, file: {self.audio_file}")
 
         if self.offline_mode:
             result = self.model.transcribe(str(self.audio_file))
