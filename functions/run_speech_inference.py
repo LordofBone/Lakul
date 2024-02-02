@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 
 class SpeechInference:
-    def __init__(self, audio_file, offline_mode, model_size, api_key, init_on_launch=True):
+    def __init__(self, audio_file, offline_mode, model_size, api_key):
         """
         Initialize the speech inference class.
         """
@@ -19,11 +19,6 @@ class SpeechInference:
         self.audio_file = audio_file
 
         self.offline_mode = offline_mode
-
-        # this is for code calling this to have the option to not initialize the STT model until later or on init of
-        # the class
-        if init_on_launch:
-            self.init_models()
 
     def init_models(self):
         """

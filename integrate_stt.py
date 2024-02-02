@@ -17,9 +17,21 @@ class SpeechtoTextHandler:
         self.inferencing = False
         self.recorder = AudioRecorder(microphone_name=stt_microphone_name, audio_file=stt_audio_file)
         self.inferencer = SpeechInference(audio_file=stt_audio_file, offline_mode=stt_offline_mode,
-                                          model_size=stt_model_size, api_key=stt_api_key, init_on_launch=init_on_launch)
+                                          model_size=stt_model_size, api_key=stt_api_key)
+
+        # this is for code calling this to have the option to not initialize the STT model until later or on init of
+        # the class
+        if init_on_launch:
+            self.init_models()
 
         logger.debug("Initialized")
+
+    def init_models(self):
+        """
+        Initialize the models.
+        :return:
+        """
+        self.inferencer.init_models()
 
     def initiate_recording(self, max_seconds=60, silence_threshold=100, silence_duration=200):
         """
