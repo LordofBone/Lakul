@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 class SpeechtoTextHandler:
     def __init__(self, stt_microphone_name=microphone_name, stt_audio_file=audio_file, stt_offline_mode=offline_mode,
-                 stt_model_size=model_size, stt_api_key=api_key):
+                 stt_model_size=model_size, stt_api_key=api_key, init_on_launch=True):
         """
         Initialize the speech to text handler with current state.
         """
@@ -17,7 +17,7 @@ class SpeechtoTextHandler:
         self.inferencing = False
         self.recorder = AudioRecorder(microphone_name=stt_microphone_name, audio_file=stt_audio_file)
         self.inferencer = SpeechInference(audio_file=stt_audio_file, offline_mode=stt_offline_mode,
-                                          model_size=stt_model_size, api_key=stt_api_key)
+                                          model_size=stt_model_size, api_key=stt_api_key, init_on_launch=init_on_launch)
 
         logger.debug("Initialized")
 
