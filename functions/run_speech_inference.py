@@ -20,6 +20,12 @@ class SpeechInference:
 
         self.offline_mode = offline_mode
 
+        self.model = None
+
+        self.model_size = model_size
+
+        self.api_key = api_key
+
     def init_models(self):
         """
         Initialize the models.
