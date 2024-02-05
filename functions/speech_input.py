@@ -9,12 +9,17 @@ logger = logging.getLogger(__name__)
 
 
 class AudioRecorder:
-    def __init__(self, microphone_name, audio_file):
+    def __init__(self, microphone_name, audio_file, highest_quality=True):
         self.p = pyaudio.PyAudio()
         self.microphone_name = microphone_name
         self.input_device = self.find_usb_microphone_device()
+
         self.sample_rates = [8000, 11025, 16000, 22050, 32000, 44100, 48000, 88200, 96000, 176400, 192000, 384000]
         self.chunk_sizes = [128, 256, 512, 1024, 2048]
+
+        if highest_quality:
+            self.sample_rates.reverse()
+            self.chunk_sizes.reverse()
 
         self.RATE = self.find_compatible_sample_rate()
         self.CHUNK = self.find_compatible_chunk_size()
