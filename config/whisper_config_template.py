@@ -14,4 +14,3 @@ offline_mode = True
 api_key = "your_api_key_here"  # Replace with your OpenAI API key
 
 find_high_quality_audio = True
-
