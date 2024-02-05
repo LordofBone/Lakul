@@ -99,6 +99,8 @@ class AudioRecorder:
         silence_frames = 0
         total_frames = 0
 
+        silence_duration = silence_duration * 1000  # Convert to milliseconds
+
         stream = self.p.open(format=pyaudio.paInt16,
                              channels=1,
                              rate=self.RATE,
