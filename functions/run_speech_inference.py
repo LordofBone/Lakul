@@ -1,8 +1,8 @@
 import logging
 from pathlib import Path
 
-import openai
 import whisper
+from openai import OpenAI
 
 root_dir = Path(__file__).parent
 
@@ -15,6 +15,7 @@ class SpeechInference:
         """
         Initialize the speech inference class.
         """
+        self.client = None
 
         self.audio_file = audio_file
 
@@ -37,7 +38,8 @@ class SpeechInference:
             logger.debug("Initialized Speech Inference model")
         else:
             logger.debug("Initializing OpenAI API")
-            openai.api_key = self.api_key
+            self.client = OpenAI()
+            self.client.api_key = self.api_key
             logger.debug("Initialized OpenAI API")
 
     def run_stt(self):
@@ -51,7 +53,10 @@ class SpeechInference:
             result = self.model.transcribe(str(self.audio_file))
         else:
             file = open(self.audio_file, "rb")
-            result = transcription = openai.Audio.transcribe("whisper-1", file)
+            result = self.client.audio.transcriptions.create(
+                model="whisper-1",
+                file=file,
+            )
 
         logger.debug(f"Completed running speech inference, output: {result['text']}")
 
