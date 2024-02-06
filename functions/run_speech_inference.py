@@ -57,8 +57,9 @@ class SpeechInference:
             result = self.client.audio.transcriptions.create(
                 model="whisper-1",
                 file=file,
+                response_format="text",
             )
 
-        logger.debug(f"Completed running speech inference, output: {result['text']}")
+        logger.debug(f"Completed running speech inference, output: {result}")
 
-        return result["text"]
+        return result
