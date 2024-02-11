@@ -52,6 +52,7 @@ class SpeechInference:
 
         if self.offline_mode:
             result = self.model.transcribe(str(self.audio_file))
+            result = result['text']
         else:
             file = open(self.audio_file, "rb")
             result = self.client.audio.transcriptions.create(
