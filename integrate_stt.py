@@ -10,10 +10,13 @@ logger = logging.getLogger(__name__)
 
 class SpeechtoTextHandler:
     def __init__(self, stt_microphone_name=microphone_name, stt_audio_file=audio_file, stt_offline_mode=offline_mode,
-                 stt_model_size=model_size, stt_api_key=api_key, init_on_launch=True):
+                 stt_model_size=model_size, stt_api_key=api_key, init_on_launch=True, custom_name=""):
         """
         Initialize the speech to text handler with current state.
         """
+        self.custom_name = custom_name
+        self.mode = "Offline" if stt_offline_mode else "Online"
+
         self.listening = False
         self.inferencing = False
         self.recorder = AudioRecorder(microphone_name=stt_microphone_name, audio_file=stt_audio_file,
@@ -26,7 +29,7 @@ class SpeechtoTextHandler:
         if init_on_launch:
             self.init_models()
 
-        logger.debug("Initialized")
+        logger.debug(f"{self.__class__.__name__} ({self.custom_name}) initialized in {self.mode} mode.")
 
     def init_models(self):
         """
