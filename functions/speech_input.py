@@ -99,7 +99,8 @@ class AudioRecorder:
         silence_frames = 0
         total_frames = 0
 
-        silence_duration = silence_duration * 1000  # Convert to milliseconds
+        silence_duration_ms = silence_duration * 1000  # silence_duration should now be in seconds to convert to
+        # milliseconds
 
         stream = self.p.open(format=pyaudio.paInt16,
                              channels=1,
@@ -108,18 +109,25 @@ class AudioRecorder:
                              frames_per_buffer=self.CHUNK,
                              input_device_index=self.input_device)
 
+        # Calculate the duration of one frame in milliseconds
+        frame_duration_ms = (self.CHUNK / self.RATE) * 1000
+
+        # Initialize a variable to track the total duration of silence in milliseconds
+        total_silence_duration_ms = 0
+
         while total_frames < int(self.RATE / self.CHUNK * max_seconds):
             data = stream.read(self.CHUNK, exception_on_overflow=False)
-
             frames.append(data)
 
             # Check for silence
             if self.rms(data) < silence_threshold:
-                silence_frames += 1
-                if silence_frames >= silence_duration:
+                # Accumulate the silence duration in milliseconds
+                total_silence_duration_ms += frame_duration_ms
+                if total_silence_duration_ms >= silence_duration_ms:
                     break
             else:
-                silence_frames = 0
+                # Reset silence duration counter when noise is detected
+                total_silence_duration_ms = 0
 
             total_frames += 1
 
