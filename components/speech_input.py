@@ -93,7 +93,7 @@ class AudioRecorder:
         Listen to the microphone and save the recorded sound.
         Stops recording after silence_duration seconds of silence or after max_seconds.
         """
-        logger.debug("Listening")
+        logger.info("Listening")
 
         frames = []
         silence_frames = 0
@@ -134,7 +134,7 @@ class AudioRecorder:
         stream.stop_stream()
         stream.close()
 
-        logger.debug("Finished listening")
+        logger.info("Finished listening")
 
         with wave.open(str(self.audio_file), 'wb') as wf:
             wf.setnchannels(1)
