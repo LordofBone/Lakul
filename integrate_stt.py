@@ -1,16 +1,17 @@
 import logging
 
-from .config.whisper_config import (offline_mode, model_size, microphone_name, api_key, audio_file,
+from components.openai_api_key import openai_api_key
+from .components.run_speech_inference import SpeechInference
+from .components.speech_input import AudioRecorder
+from .config.whisper_config import (offline_mode, model_size, microphone_name, audio_file,
                                     find_high_quality_audio)
-from .functions.run_speech_inference import SpeechInference
-from .functions.speech_input import AudioRecorder
 
 logger = logging.getLogger(__name__)
 
 
 class SpeechtoTextHandler:
     def __init__(self, stt_microphone_name=microphone_name, stt_audio_file=audio_file, stt_offline_mode=offline_mode,
-                 stt_model_size=model_size, stt_api_key=api_key, init_on_launch=True, custom_name=""):
+                 stt_model_size=model_size, stt_api_key=openai_api_key, init_on_launch=True, custom_name=""):
         """
         Initialize the speech to text handler with current state.
         """

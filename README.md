@@ -45,10 +45,16 @@ and to update it:
 If you are running on RPi you will need to ensure that the pytorch version is at 1.12.0, or you will get an illegal
 instruction error.
 
-Next you need to copy the file `config/whisper_config_template.py` into a file called `config/whisper_config.py` and
-add your own API key from [OpenAI](https://platform.openai.com/); if you wish to use the online version (will be
-considerably
-faster on a RPi 4 than the offline version, but of course will cost you money per inference).
+Make a file in the root of your project:
+
+```.env```
+
+And add the following line:
+```OPENAI_API_KEY=<your_api_key>```
+
+Adding your own API key from [OpenAI](https://platform.openai.com/)
+
+This will be considerably faster than the offline version, but of course will cost you money per inference.
 
 You can then switch between local and online versions by changing the `offline_mode` variable
 in `config/whisper_config.py`.

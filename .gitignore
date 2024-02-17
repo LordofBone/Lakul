@@ -6,4 +6,3 @@ temp/*
 misc/*
 audio/*
 !audio/.gitkeep
-config/whisper_config.py
