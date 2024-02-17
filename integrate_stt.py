@@ -1,6 +1,6 @@
 import logging
 
-from components.openai_api_key import openai_api_key
+from .components.openai_api_key import openai_api_key
 from .components.run_speech_inference import SpeechInference
 from .components.speech_input import AudioRecorder
 from .config.whisper_config import (offline_mode, model_size, microphone_name, audio_file,
